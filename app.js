@@ -24,6 +24,7 @@ const players = {
 
 // selectors................................
 
+
 let startBtn = document.querySelector ('.start-btn')
 let startingDiv = document.querySelector ('.starting')
 let targetNum = document.querySelector ('.target-btn')
@@ -39,22 +40,23 @@ let p2TotalScore = document.querySelector ('.p2Total')
 
 // listeners...............................
 
+
 // ...................Smart Phone Rotate..........................................
 function checkOrientation() {
     var messageElement = document.getElementById('rotate-message');
     if (window.matchMedia("(orientation: portrait)").matches && window.matchMedia("(max-width: 48em)").matches) {
-        // Portrait orientation and screen width <= 768px
+  
         messageElement.style.display = 'block';
     } else {
-        // Landscape orientation or screen width > 768px
+       
         messageElement.style.display = 'none';
     }
 }
 
-// Call the function initially
+
 checkOrientation();
 
-// Listen for orientation changes
+
 window.addEventListener('resize', checkOrientation);
 
 
