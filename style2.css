@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle, #b3cde0, #005b96);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.starting {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90vh;
+    background-color: rgb(29, 83, 131);
+    color: rgb(226, 172, 124);
+    z-index: 10;
+}
+
+.start-btn {
+    background-color: #87CEFA;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    border: none;
+    color: black;
+    border-radius: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.start-btn:hover {
+    transform: translateY(-0.3125rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.players {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+    padding: 0 10%;
+}
+
+.player-1, .player-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    max-width: 31.25rem;
+    min-width: 18.75rem;
+    width: 50%;
+    overflow-wrap: break-word; 
+}
+
+.player-1 {
+    background-color: #87CEFA;
+}
+
+.player-2 {
+    background-color: #F08080;
+}
+
+.current {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0.625rem;
+    padding: 0.625rem;
+    width: 10vw;
+    height: 20vh;
+    border: 0.0625rem solid black;
+    border-radius: 0.625rem;
+    background-color: rgb(242, 241, 247);
+    overflow-wrap: break-word; 
+}
+
+.mid-div {
+    position: absolute;
+    top: 0;
+    left: 45%;
+    width: 10%;
+}
+
+.game-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    height: 100vh;
+}
+
+.new-game, .roll-dice, .hold {
+    border: 0.0625rem solid black;
+    border-radius: 0.3125rem;
+    background-color: rgb(242, 241, 247);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    padding: 0.625rem;
+    text-align: center;
+    overflow-wrap: break-word; 
+}
+
+.new-game:hover, .roll-dice:hover, .hold:hover {
+    background-color: rgb(226, 172, 124);
+    transform: translateY(-0.3125rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.new-game:active, .roll-dice:active, .hold:active {
+    transform: translateY(0);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.h3 {
+    padding: 1.25rem;
+}
+
+.p1Total, .p2Total {
+    font-size: 3rem;
+}
+
+@keyframes roll {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(90deg); }
+    50% { transform: rotate(180deg); }
+    75% { transform: rotate(270deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.dice-1, .dice-2 {
+    width: 6.25rem;
+    height: 6.25rem;
+    border: 0.0625rem solid black;
+    border-radius: 0.125rem;
+    transition: transform 0.6s ease-in-out;
+    margin: 0 auto; 
+    display: block; 
+}
+
+.dice-1.rolling, .dice-2.rolling {
+    animation: roll 0.6s ease-in-out;
+}
+
+#rotate-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    line-height: 2em;
+    padding-top: 20%;
+}
+
+@media (max-width: 48em) and (orientation: portrait) {
+    #rotate-message {
+        display: block;
+    }
+}
+
+@media (max-width: 48em) {
+    .starting {
+        flex-direction: column;
+        height: auto;
+        padding: 1.25rem;
+        background-color: black;
+    }
+    .players {
+        flex-direction: column;
+        padding: 1.25rem;
+    }
+    .mid-div {
+        position: relative;
+        left: 0;
+        width: 100%;
+        margin-top: 1.25rem;
+    }
+    .game-buttons {
+        height: auto;
+        width:20% ; 
+        padding: 1.25rem;
+    }
+    .current {
+        width: 80%;
+        margin: 0 auto;
+    }
+}
