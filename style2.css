@@ -21,9 +21,10 @@ body {
     left: 5%;
     width: 90%;
     height: 90vh;
-    background-color: rgb(29, 83, 131);
+    background-color: rgb(0, 0, 0);
     color: rgb(226, 172, 124);
     z-index: 10;
+    border-radius: 5px;
 }
 
 .start-btn {
@@ -46,7 +47,7 @@ body {
 
 .players {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     width: 100%;
     height: 100vh;
@@ -102,6 +103,36 @@ body {
     height: 100vh;
 }
 
+.set-traget-div{
+    height: 5rem;
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.target-btn[type="number"] {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 5px;
+    font-size: 16px;
+    text-align: center;
+    
+}
+
+.target-btn[type="number"]:focus {
+    border-color: #66afe9;
+    outline: none;
+}
+
+.target-btn[type="number"]:invalid {
+    border-color: red;
+}
+
 .new-game, .roll-dice, .hold {
     border: 0.0625rem solid black;
     border-radius: 0.3125rem;
@@ -141,8 +172,8 @@ body {
 }
 
 .dice-1, .dice-2 {
-    width: 6.25rem;
-    height: 6.25rem;
+    width:4rem;
+    height: 4rem;
     border: 0.0625rem solid black;
     border-radius: 0.125rem;
     transition: transform 0.6s ease-in-out;
@@ -172,13 +203,14 @@ body {
 @media (max-width: 48em) and (orientation: portrait) {
     #rotate-message {
         display: block;
+        z-index: 100;
     }
 }
 
 @media (max-width: 48em) {
     .starting {
         flex-direction: column;
-        height: auto;
+        height: 90vh;
         padding: 1.25rem;
         background-color: black;
     }
@@ -187,7 +219,7 @@ body {
         padding: 1.25rem;
     }
     .mid-div {
-        position: relative;
+        /* position: relative; */
         left: 0;
         width: 100%;
         margin-top: 1.25rem;
