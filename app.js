@@ -1,8 +1,5 @@
 // varibale................................
 
-
-gameOn = true
-
 const newGamePlayer = {
     current:0,
     score:0
@@ -39,24 +36,13 @@ let p1TotalScore = document.querySelector ('.p1Total')
 let p2TotalScore = document.querySelector ('.p2Total')
 let player1Div = document.querySelector('.player-1');
 let player2Div = document.querySelector('.player-2');
-
+let messageElement = document.querySelector('#rotate-message');
 
 // listeners...............................................................................
 
 
 // ...................Smart-Phone-Rotate....................EventListener..................
-function checkOrientation() {
-    let messageElement = document.getElementById('rotate-message');
-
-    if (window.matchMedia("(orientation: portrait)").matches && window.matchMedia("(max-width: 48em)").matches) {
-        messageElement.style.display = 'block';
-    } else {
-        messageElement.style.display = 'none';
-    }
-}
-checkOrientation();
 window.addEventListener('resize', checkOrientation);
-
 
 
 // ...................Game-Start............................EventListener..................
@@ -64,7 +50,6 @@ startBtn.addEventListener("click", function(){
     target = targetNum.value
     startingDiv.style.display = 'none';
     PlayerHighlight()
-
 });
 
 
@@ -87,6 +72,7 @@ rollTheDice.addEventListener("click", function(){
         if(rand1 + rand2 === 12) {
         alert('Player 1: Double six rolled! you lost your current score.')
         p1currentScore.innerText = 0;
+        activePlayer.current =0;
         players.activePlayer = 2
         PlayerHighlight()
         }else {
@@ -95,14 +81,13 @@ rollTheDice.addEventListener("click", function(){
     if(activePlayer.current + activePlayer.score > target) {
         alert('Player 1 lost. Please start a new game.');
 
-
-
     }
     }else if( players.activePlayer === 2){
         if(rand1 + rand2 === 12) {
         activePlayer.current = 0
         alert('Player 2: Double six rolled! you lost your current score.')
         p2currentScore.innerText = 0;
+        activePlayer.current =0;
         players.activePlayer = 1
         PlayerHighlight()
         }else {
@@ -111,8 +96,6 @@ rollTheDice.addEventListener("click", function(){
     if(activePlayer.current + activePlayer.score > target) {
       
         alert('Player 2 lost. Please start a new game.');
-
-
     }
    }
   });
@@ -141,13 +124,10 @@ changPlayer.addEventListener("click", function(){
 });
 
 
-
-// functions..............................................................................
-
-const activePlayer = () => {}
+// functions.................................................................................
 
 
-// ...................Random-Number-Genrator...................Func.......................
+// ...................Random-Number-Genrator...................Func..........................
 const rnNum = () => {
     rand1 = Math.ceil(Math.random()*6)
     rand2 = Math.ceil(Math.random()*6)
@@ -155,7 +135,7 @@ const rnNum = () => {
     }
 
 
-// ...................Image-Genrator...........................Func......................
+// ...................Image-Genrator...........................Func..........................
 const changeImageSrc = (rand1, rand2) => {
     const diceNum1 = `/images/dice-${rand1}.png`;
     dice1.setAttribute("src", diceNum1);
@@ -163,8 +143,8 @@ const changeImageSrc = (rand1, rand2) => {
         dice2.setAttribute("src", diceNum2);
     }
 
-// const curruntScore = () => {}
 
+// ...................Player-Highlight-...................Func................................
 const PlayerHighlight = () => {
 
     if (players.activePlayer === 1) {
@@ -177,3 +157,13 @@ const PlayerHighlight = () => {
 }
 
 
+// ...................Check-Orientation-...................Func...............................
+function checkOrientation() {
+
+    if (window.matchMedia("(orientation: portrait)").matches && window.matchMedia("(max-width: 48em)").matches) {
+        messageElement.style.display = 'block';
+    } else {
+        messageElement.style.display = 'none';
+    }
+}
+checkOrientation();
