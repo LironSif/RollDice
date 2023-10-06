@@ -5,7 +5,7 @@
 }
 
 body {
-    background: radial-gradient(circle, #b3cde0, #005b96);
+    background-image: radial-gradient(circle, #b3cde0, #005b96);
     font-family: Arial, Helvetica, sans-serif;
     min-height: 100vh;
     margin: 0;
@@ -67,11 +67,11 @@ body {
 }
 
 .player-1 {
-    background-color: #87CEFA;
+    background-image: radial-gradient(circle, #ffffff, #87CEFA);
 }
 
 .player-2 {
-    background-color: #F08080;
+    background-image: radial-gradient(circle, #ffffff, #F08080);
 }
 
 .current {
