@@ -10,7 +10,7 @@
 .player-1, .player-2 {
     display: flex;
     box-sizing: border-box;
-    /* border-radius: 16px; */
+    border-radius: 8px;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -27,7 +27,7 @@
     /* border: 2px solid #ff5722; */
     background: radial-gradient(circle, #ff0000, #ff7d00, #ffbd00);
     padding: 10px 20px;
-    border-radius: 16px;
+    border-radius: 4px;
     font-weight: bold;
 
 }
