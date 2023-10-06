@@ -11,6 +11,11 @@ body {
     margin: 0;
 }
 
+.team-signature {
+    font-size: smaller; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+  }
 .starting {
     display: flex;
     flex-direction: column;
