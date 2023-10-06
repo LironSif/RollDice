@@ -27,6 +27,7 @@
                 <li>Click "Roll Dice" to obtain a value.</li>
                 <li>Click "Hold" to switch players.</li>
                 <li>If double sixes are rolled, the current score will reset to zero.</li>
+                <li>New !! you can now play vs our Ai.</li>
             </ul>
         </div>
         <br>
@@ -55,7 +56,7 @@
             </div>
 
             <div class="player-2">
-                <h1>Player 2</h1>
+                <h1 class="ai">Player 2</h1>
                 <p class="p2Total">0</p>
                 <div class="current">
                     <h5>current</h5>
@@ -70,6 +71,11 @@
 
         <div class="game-buttons">
             <div class="new-game">New game</div>
+            <div>
+            <ph4 class="p-ai">AI Player</h4>
+            <br>
+            <input type="checkbox" id="ai">
+            </div>
             <div><img class="dice-1"src="/images/dice-1.png" alt=""></div>
             <div><img class="dice-2"src="/images/dice-2.png" alt=""></div>
             <div class="roll-dice">Roll dice</div>
@@ -78,6 +84,6 @@
     </div>
     
     <script src="app.js"></script>
-    
+
 </body>
 </html>
