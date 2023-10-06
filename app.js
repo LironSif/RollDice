@@ -85,7 +85,7 @@ rollTheDice.addEventListener("click", function(){
 
     if( players.activePlayer === 1){
         if(rand1 + rand2 === 12) {
-        alert('Double six rolled!')
+        alert('Player 1: Double six rolled! you lost your current score.')
         p1currentScore.innerText = 0;
         players.activePlayer = 2
         PlayerHighlight()
@@ -101,7 +101,7 @@ rollTheDice.addEventListener("click", function(){
     }else if( players.activePlayer === 2){
         if(rand1 + rand2 === 12) {
         activePlayer.current = 0
-        alert('Double six rolled!')
+        alert('Player 2: Double six rolled! you lost your current score.')
         p2currentScore.innerText = 0;
         players.activePlayer = 1
         PlayerHighlight()
