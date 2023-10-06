@@ -131,7 +131,7 @@ changPlayer.addEventListener("click", function(){
         PlayerHighlight()
 
     } else if(players.activePlayer === 2){
-        activePlayer.score = activePlayer.current;
+        activePlayer.score += activePlayer.current;
         p2TotalScore.innerText = activePlayer.score;
         p2currentScore.innerText = 0;
         players[`player${players.activePlayer}`].current =0
