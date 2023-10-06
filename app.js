@@ -43,20 +43,15 @@ let p2TotalScore = document.querySelector ('.p2Total')
 
 // ...................Smart Phone Rotate..........................................
 function checkOrientation() {
-    var messageElement = document.getElementById('rotate-message');
+    let messageElement = document.getElementById('rotate-message');
+    
     if (window.matchMedia("(orientation: portrait)").matches && window.matchMedia("(max-width: 48em)").matches) {
-  
         messageElement.style.display = 'block';
     } else {
-       
         messageElement.style.display = 'none';
     }
 }
-
-
 checkOrientation();
-
-
 window.addEventListener('resize', checkOrientation);
 
 
@@ -87,12 +82,16 @@ rollTheDice.addEventListener("click", function(){
     p1currentScore.innerText = activePlayer.current
     console.log(activePlayer.score)
     if(activePlayer.current + activePlayer.score > target) {
-    alert ("You lose bro")
+    alert(`${activePlayer} loses`);
+
+
     }
     }else if( players.activePlayer === 2){
     p2currentScore.innerText = activePlayer.current
     if(activePlayer.current + activePlayer.score > target) {
-    alert ("You lose bro")
+        // need to fix 
+    alert(`${activePlayer} loses`);
+
     }
    }
   });
