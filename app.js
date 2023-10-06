@@ -75,6 +75,9 @@ rollTheDice.addEventListener("click", function(){
         p1currentScore.innerText = 0;
         activePlayer.current =0;
         players.activePlayer = 2
+        // experment
+        aiPlayer ()
+        // experment
         PlayerHighlight()
         }else {
         p1currentScore.innerText = activePlayer.current
@@ -185,31 +188,51 @@ checkOrientation();
 
 const aiPlayer = () => {
     if(aiON === 1 && players.activePlayer === 2) {
+        
+        let x = Math.ceil(Math.random()*3);
+        console.log(x);
 
-        let i = Math.ceil(Math.random()*2);
-        console.log(i)
+        function playRound(t) {
+            if (t <= x) {
+                console.log(`playing ${t} round..`);
+                const [rand1, rand2] = rnNum(); 
+                if(rand1 + rand2 === 12){
+                    alert('ai got 12 our team have scoope problem we will fix that soon please restart thhe game')
 
-        for(let t = 1; t <= i; t++){
+                    changPlayer ()
+                }
+               
+                setTimeout(() => {changeImageSrc(rand1, rand2); }, 1500);
+                setTimeout(() => {
+                   
+                    console.log(`Ai got ${rand1 + rand2}..`);
+                    console.log('thinking..');
+                    
+                    players.player2.current += rand1 + rand2;
+                    p2currentScore.innerText = players.player2.current ;
+                    playRound(t + 1);  
+                }, 1500);
 
-        console.log(`playing ${t}..`);
-        // console.log("Ai is working nowwww..");
-        const [rand1, rand2] = rnNum(); 
-        changeImageSrc(rand1, rand2);
-        setTimeout(() => {
-            console.log('thinking..')
-            players.player2.current += rand1 + rand2;
-        }, 500);
+            } else {
+
+                console.log('ai finish his round')
+                if (players.player2.current + players.player2.score > target) {
+                    alert('You Win !!! Congrats.');
+                    reloadPage();
+                } else {
+                    console.log("Changing player..");
+                    setTimeout(() => {changePlayer(); }, 1500);
+                    
+                }
+            }
         }
+        // if(rand1 + rand2 === 12){
+        //     changPlayer()
+        // }
+        playRound(1);  
 
-        if( players.player2.current + players.player2.score > target){
-        alert('You Win !!! Congrats.');
-        // make blocking div
-        reloadPage()
-        } else {
-            console.log("Changing player..");
-            changePlayer()
-        }
-        }}
+    }
+};
 
 // ...................Check-box....................................Func...............................
         checkbox.addEventListener('change', function() {
@@ -222,6 +245,7 @@ const aiPlayer = () => {
         } else {
             aiON = 0
             aiName.innerText = "Player2"
+            players.player2.current = 0;
             console.log("Ai is not checked..");
         }
         });
