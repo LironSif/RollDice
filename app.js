@@ -19,6 +19,11 @@ const players = {
  let aiON = 0
  let target = 0 ;
 
+// if(target === players[`player${players.activePlayer}`]) {
+//  alert(players[`player${players.activePlayer}`] + 'wON')
+
+
+
 // selectors................................
 
 
@@ -50,11 +55,17 @@ window.addEventListener('resize', checkOrientation);
 
 // ...................Game-Start............................EventListener..................
 startBtn.addEventListener("click", function(){  
-    target = targetNum.value
-    startingDiv.style.display = 'none';
-    PlayerHighlight()
-});
+    target = targetNum.value;
 
+    if (!target || target <= 0 || !Number.isInteger(+target)) {
+    
+        alert("Please enter a positive integer for the winning score.");
+        targetNum.focus();
+        return;
+        }
+        startingDiv.style.display = 'none';
+        PlayerHighlight();
+});
 
 // ...................Init-Game............................EventListener..................
 intNewGame.addEventListener("click", reloadPage);
@@ -71,45 +82,62 @@ rollTheDice.addEventListener("click", function(){
 
     if( players.activePlayer === 1){
         if(rand1 + rand2 === 12) {
-        alert('Player 1: Double six rolled! you lost your current score.')
-        p1currentScore.innerText = 0;
-        activePlayer.current =0;
-        players.activePlayer = 2
-        // experment
-        aiPlayer ()
-        // experment
-        PlayerHighlight()
-        }else {
-        p1currentScore.innerText = activePlayer.current
-        }
-    if(activePlayer.current + activePlayer.score > target) {
-        alert('Player 1 lost. Please start a new game.');
+            alert('Player 1: Double six rolled! you lost your current score.')
+            p1currentScore.innerText = 0;
+            activePlayer.current =0;
+            players.activePlayer = 2
+            // experiment...WORKING GOOD
+            aiPlayer ()
+            // experiment...WORKING GOOD
+            PlayerHighlight()
 
-    }
+        }else {
+            p1currentScore.innerText = activePlayer.current
+            }
+
+
+            let tot1 = activePlayer.current + activePlayer.score
+              // experiment..............2
+            if(target === tot1) {
+                alert(`Player 1 hit the target score of ${target}. Congratulations, you won!`);
+                reloadPage()
+               }
+               // experiment ...........2
+            if (tot1 > target) {
+                alert(`Player 1 lost with a score of ${tot1}, exceeding the target score of ${target}. Please start a new game.`);
+            }
+
     }else if( players.activePlayer === 2){
         if(rand1 + rand2 === 12) {
-        activePlayer.current = 0
-        alert('Player 2: Double six rolled! you lost your current score.')
-        p2currentScore.innerText = 0;
-        activePlayer.current =0;
-        players.activePlayer = 1
-        PlayerHighlight()
-        }else {
-        p2currentScore.innerText = activePlayer.current
+            activePlayer.current = 0
+            alert('Player 2: Double six rolled! you lost your current score.')
+            p2currentScore.innerText = 0;
+            activePlayer.current =0;
+            players.activePlayer = 1
+            PlayerHighlight()
+
+         }else {
+            p2currentScore.innerText = activePlayer.current
+            }
+            let tot2 = activePlayer.current + activePlayer.score
+             // experiment..............2
+             if(target === tot2) {
+                alert(`Player 2 hit the target score of ${target}. Congratulations, you won!`);
+                reloadPage()
+               }
+               // experiment ...........2
+        if (tot2 > target) {
+            alert(`Player 2 lost with a score of ${tot2}, exceeding the target score of ${target}. Please start a new game.`);
+
+
+        }        
          }
-    if(activePlayer.current + activePlayer.score > target) {
-      
-        alert('Player 2 lost. Please start a new game.');
-    }
-   }
-  });
+     }
+  );
 
 
 // ...................Change-Player......Hold-btn...............EventListener..................
 changPlayer.addEventListener("click", changePlayer);
-
-
-
 
 
 // functions.................................................................................
@@ -188,21 +216,19 @@ checkOrientation();
 
 const aiPlayer = () => {
     if(aiON === 1 && players.activePlayer === 2) {
-        
         let x = Math.ceil(Math.random()*3);
-        console.log(x);
 
         function playRound(t) {
             if (t <= x) {
                 console.log(`playing ${t} round..`);
                 const [rand1, rand2] = rnNum(); 
-                if(rand1 + rand2 === 12){
-                    alert('ai got 12 our team have scoope problem we will fix that soon please restart thhe game')
 
+                if(rand1 + rand2 === 12){
+                    alert('Notice: the AI scored 12. Our team is aware of a scope issue and is working to fix it. Please restart the game in the meantime. Thank you.');
                     changPlayer ()
                 }
                
-                setTimeout(() => {changeImageSrc(rand1, rand2); }, 1500);
+                setTimeout(() => {changeImageSrc(rand1, rand2); }, 1400);
                 setTimeout(() => {
                    
                     console.log(`Ai got ${rand1 + rand2}..`);
@@ -211,28 +237,27 @@ const aiPlayer = () => {
                     players.player2.current += rand1 + rand2;
                     p2currentScore.innerText = players.player2.current ;
                     playRound(t + 1);  
-                }, 1500);
+                }, 1400);
 
             } else {
 
                 console.log('ai finish his round')
-                if (players.player2.current + players.player2.score > target) {
-                    alert('You Win !!! Congrats.');
+                let tot = players.player2.current + players.player2.score
+                if ( tot > target) {
+                    alert(`Congratulations, you win! AI score: ${tot}, Target score: ${target}. Click 'OK' to start a new game.`);
                     reloadPage();
                 } else {
                     console.log("Changing player..");
-                    setTimeout(() => {changePlayer(); }, 1500);
+                    setTimeout(() => {changePlayer(); }, 1400);
                     
                 }
             }
         }
-        // if(rand1 + rand2 === 12){
-        //     changPlayer()
-        // }
         playRound(1);  
 
     }
 };
+
 
 // ...................Check-box....................................Func...............................
         checkbox.addEventListener('change', function() {
